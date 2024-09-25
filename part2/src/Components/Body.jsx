@@ -6,34 +6,32 @@ export const Body = () => {
     const [listOfRest, setListOfRest] = useState(restaurantList);
 
     return (
-    <div className="body">
-        <button className="res-filter" onClick={()=>
-            {
-                const filteredList = restaurantList.filter((rest) =>rest.data.avgRating >4);
+        <div className="body">
+            <button className="res-filter" onClick={() => {
+                const filteredList = restaurantList.filter((rest) => rest.data.avgRating > 4);
                 setListOfRest(filteredList);
             }
-        }>Top rated rest
-        </button>
+            }>Top rated rest
+            </button>
 
-        <button className="res-filter" onClick={()=>
-            {
-                const filteredList = restaurantList.filter((rest) =>rest.data.avgRating <4);
+            <button className="res-filter" onClick={() => {
+                const filteredList = restaurantList.filter((rest) => rest.data.avgRating < 4);
                 setListOfRest(filteredList);
             }
-        }>Low rated rest
-        </button>
+            }>Low rated rest
+            </button>
 
-        
-        <div className="res-search">
-            search
-        </div>
-        <div className="res-container">
-            {
-                listOfRest.map((rest)=>(
-                    <RestaurantCard key ={rest.data.id} resData = {rest} />
-                ))
-            }
-        </div>
-    </div >
-  )
+
+            <div className="res-search">
+                search
+            </div>
+            <div className="res-container">
+                {
+                    listOfRest.map((rest) => (
+                        <RestaurantCard key={rest.data.id} resData={rest} />
+                    ))
+                }
+            </div>
+        </div >
+    )
 }
