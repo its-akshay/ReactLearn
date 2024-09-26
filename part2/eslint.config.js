@@ -24,6 +24,10 @@ export default [
       'react-refresh': reactRefresh,
     },
     rules: {
+
+      //only for removing the props-validation issue
+      "react/prop-types": "off",
+
       ...js.configs.recommended.rules,
       ...react.configs.recommended.rules,
       ...react.configs['jsx-runtime'].rules,

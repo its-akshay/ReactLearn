@@ -6,7 +6,9 @@ export const Body = () => {
     const [listOfRest, setListOfRest] = useState(restaurantList);
 
     return (
+    
         <div className="body">
+              
             <button className="res-filter" onClick={() => {
                 const filteredList = restaurantList.filter((rest) => rest.data.avgRating > 4);
                 setListOfRest(filteredList);
@@ -22,9 +24,9 @@ export const Body = () => {
             </button>
 
 
-            <div className="res-search">
-                search
-            </div>
+            <div className = "search-container">
+                <input type="text" className="search-input" placeholder="search" />
+              </div>
             <div className="res-container">
                 {
                     listOfRest.map((rest) => (
