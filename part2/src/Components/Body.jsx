@@ -2,6 +2,11 @@ import RestaurantCard from './RestaurantCard'
 import { restaurantList } from '../Utils/mockData'
 import { useState } from 'react'
 
+function filterData(searchInput, listOfRest){
+    const res =  listOfRest.filter((res)=> res.data.name.includes(searchInput))
+    return res;
+}
+
 export const Body = () => {
     const [listOfRest, setListOfRest] = useState(restaurantList);
     //below have passed the default value for searchInput
@@ -35,15 +40,20 @@ export const Body = () => {
                 />
                 <button
                     className="search-btn"
-                    onClick={() => {
-                        if (searchInput === "false") {
-                            setSearchInput("true")
-                        } else {
-                            setSearchInput("false")
-                        }
+                    // onClick={() => {
+                    //     if (searchInput === "false") {
+                    //         setSearchInput("true")
+                    //     } else {
+                    //         setSearchInput("false")
+                    //     }
+                    // }}
+                    onClick = {()=>{
+                        const data = filterData(searchInput,listOfRest);
+                        setListOfRest(data);
                     }}
                 >Search </button>
             </div>
+            
             <h1>
                 {searchInput}
             </h1>
@@ -59,3 +69,7 @@ export const Body = () => {
         </div >
     )
 }
+
+/*
+for search function
+*/
