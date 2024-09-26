@@ -54,10 +54,6 @@ export const Body = () => {
                 >Search </button>
             </div>
             
-            <h1>
-                {searchInput}
-            </h1>
-
 
             <div className="res-container">
                 {
@@ -72,4 +68,6 @@ export const Body = () => {
 
 /*
 for search function
+
+Initial issue - say i want to find the apple and banana then it will serach like apple and then bananan in that apple like apple and apple.banana
 */
