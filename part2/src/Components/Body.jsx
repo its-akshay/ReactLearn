@@ -5,6 +5,7 @@ import { useState } from 'react'
 function filterData(searchInput, listOfRest){
     const res =  listOfRest.filter((res)=> res.data.name.includes(searchInput))
     return res;
+    
 }
 
 export const Body = () => {
