@@ -1,15 +1,16 @@
-import { useEffect, useState} from "react"
+import { useEffect, useState } from "react"
 
 //unable to find any weather api so used the github api
 const Weather = () => {
-    const [weather,setWeather] = useState(null)
+    const [weather, setWeather] = useState(null)
     useEffect(() => {
         const fetchData = async () => {
-
-            const res = await fetch("https://goweather.herokuapp.com/weather/indore")
-            const data   = await res.json();
-            console.log(data)
-            setWeather(data);
+            setTimeout(async () => {
+                const res = await fetch("https://goweather.herokuapp.com/weather/indore")
+                const data = await res.json();
+                console.log(data)
+                setWeather(data);
+            }, 2000)
         }
         fetchData();
     }, [])
@@ -17,13 +18,17 @@ const Weather = () => {
     return (
         <div>
             <div>
-                {weather.temperature}
+                {weather ? weather.temperature : "Loading..."}
+                <br />
+                {weather ? weather.description : "Loading..."}
+                
             </div>
         </div>
     )
+
 }
 
-export default Weather
+export default Weather;
 
 
 
