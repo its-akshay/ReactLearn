@@ -8,7 +8,7 @@ function filterData(searchInput, listOfRest) {
         return [];
     }
     return listOfRest.filter((res) =>
-        res.data.name.toLowerCase().includes(searchInput.toLowerCase())
+        res.info.name.toLowerCase().includes(searchInput.toLowerCase())
     );
 }
 
