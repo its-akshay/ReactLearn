@@ -8,7 +8,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 const App = () => {
   return (
     <>
-      <Weather />
+
       <Header />
       <Body />
     </>
