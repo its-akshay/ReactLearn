@@ -5,12 +5,13 @@ const RestaurantCard = (props) => {
     const {resData} = props;
   return (
     <div className="res-card">
-        <img className="res-logo" src={CDN_URL+resData.data.cloudinaryImageId} />
-        <h3>{resData.data.name}</h3>
-        <h3>{resData.data.avgRating}</h3>
-        <h3>{resData.data.deliveryTime}</h3>
-        <h3>{resData.data.price}</h3>
-        <h4>₹{resData.data.costForTwo/100} FOR TWO</h4>
+        <img className="res-logo" src={CDN_URL+resData.info.cloudinaryImageId} />
+        <h3>{resData.info.areaName}</h3>
+        <h3>{resData.info.avgRating}</h3>
+
+        <h3>{resData.info.id}</h3>
+        <h3>{resData.info.name}</h3>
+        <h4>₹{resData.info.costForTwo/100} FOR TWO</h4>
     </div>
   )
 }

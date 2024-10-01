@@ -7,52 +7,73 @@ function filterData(searchInput, listOfRest) {
         console.error("listOfRest is undefined or not an array");
         return [];
     }
-    const res = listOfRest.filter((res) =>
-        res.data.name.toLowerCase().includes(searchInput.toLowerCase()));
-    return res;
-
+    return listOfRest.filter((res) =>
+        res.data.name.toLowerCase().includes(searchInput.toLowerCase())
+    );
 }
 
 export const Body = () => {
     const [listOfRest, setListOfRest] = useState([]);
-    // const [listOfRest, setListOfRest] = useState([]);
-    const [allRestaurants, setallRestaurants] = useState([])
-    //below have passed the default value for searchInput
+    const [allRestaurants, setAllRestaurants] = useState([]);
     const [searchInput, setSearchInput] = useState("");
 
     useEffect(() => {
         getRestaurants();
     }, []);
+
     async function getRestaurants() {
-        const data = await fetch(SWIGGY)
-        const json = await data.json();
-        console.log(json.data.cards[2].id);
-        setListOfRest(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        try {
+            const data = await fetch(SWIGGY);
+            const json = await data.json();
 
-        // setallRestaurants(json?.data?.cards[2]?.data?.data.cards);
-        setallRestaurants(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+            // Debugging the entire structure of the fetched JSON
+            console.log("Fetched data structure:", json);
+
+            // Validate that restaurants exist in the expected location
+            const restaurants = json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+
+            // If restaurants data exists and is an array, set the state
+            if (restaurants && Array.isArray(restaurants)) {
+                console.log("Fetched restaurants:", restaurants); // Debugging log
+                setListOfRest(restaurants);
+                setAllRestaurants(restaurants);
+            } else {
+                console.error("Failed to retrieve restaurants or restaurants not an array");
+            }
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
     }
-    console.log("Initial render")
 
-
-
-
+    console.log("Initial render");
 
     return (
-
         <div className="body">
-
-            <button className="res-filter" onClick={() => {
-                const filteredList = allRestaurants.filter((rest) => rest.data.avgRating > 4);
-                setListOfRest(filteredList);
-            }}>
+            <button
+                className="res-filter"
+                onClick={() => {
+                    if (Array.isArray(allRestaurants)) {
+                        const filteredList = allRestaurants.filter((rest) => rest.info.avgRating > 4.5);
+                        setListOfRest(filteredList);
+                    } else {
+                        console.error("allRestaurants is not an array");
+                    }
+                }}
+            >
                 Top rated rest
             </button>
 
-            <button className="res-filter" onClick={() => {
-                const filteredList = allRestaurants.filter((rest) => rest.data.avgRating < 4);
-                setListOfRest(filteredList);
-            }}>
+            <button
+                className="res-filter"
+                onClick={() => {
+                    if (Array.isArray(allRestaurants)) {
+                        const filteredList = allRestaurants.filter((rest) => rest.info.avgRating < 4);
+                        setListOfRest(filteredList);
+                    } else {
+                        console.error("allRestaurants is not an array");
+                    }
+                }}
+            >
                 Low rated rest
             </button>
 
@@ -62,24 +83,18 @@ export const Body = () => {
                     className="search-input"
                     placeholder="search"
                     value={searchInput}
-                    onChange={(e) => { setSearchInput(e.target.value) }}
+                    onChange={(e) => setSearchInput(e.target.value)}
                 />
                 <button
                     className="search-btn"
-                    // onClick={() => {
-                    //     if (searchInput === "false") {
-                    //         setSearchInput("true")
-                    //     } else {
-                    //         setSearchInput("false")
-                    //     }
-                    // }}
                     onClick={() => {
                         const data = filterData(searchInput, allRestaurants);
                         setListOfRest(data);
                     }}
-                >Search </button>
+                >
+                    Search
+                </button>
             </div>
-
 
             <div className="res-container">
                 {
@@ -87,18 +102,18 @@ export const Body = () => {
                         <h1>No restaurant matching filter</h1>
                     ) : (
                         listOfRest.map((rest) => (
-                            <RestaurantCard key={rest.data.id} resData={rest} />
+                            // Add null/undefined check for data and id before rendering
+                            
+                            rest.info && rest.info.id ? (
+                                
+                                <RestaurantCard key={rest.info.id} resData={rest} />
+                            ) : (
+                                console.error("Missing", rest)
+                            )
                         ))
                     )
                 }
-
             </div>
-        </div >
-    )
+        </div>
+    );
 }
-
-/*
-for search function
-
-Initial issue - say i want to find the apple and banana then it will serach like apple and then bananan in that apple like apple and apple.banana
-*/
