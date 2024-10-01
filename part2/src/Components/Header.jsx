@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import './Header.css'
 const Header = () => {
+  const [isLogged, setIsLogged] = useState(false);
   return (
     <div className="header">
       <div>
@@ -12,6 +14,13 @@ const Header = () => {
           <li>Contact</li>
           <li>Cart</li>
         </ul>
+
+        {
+          (!isLogged) ?
+            (<button onClick={() => { setIsLogged(true) }}>Login</button>) :
+            (<button onClick={() => { setIsLogged(false) }}>Logout</button>)
+        }
+        
       </div>
     </div>
   )

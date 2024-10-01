@@ -1,6 +1,7 @@
 import RestaurantCard from './RestaurantCard'
 import { useEffect, useState } from 'react'
 import { SWIGGY } from '../Utils/constants';
+import Shimmer from './Shimmer';
 
 function filterData(searchInput, listOfRest) {
     if (!listOfRest || !Array.isArray(listOfRest)) {
@@ -99,7 +100,8 @@ export const Body = () => {
             <div className="res-container">
                 {
                     (!listOfRest || listOfRest.length === 0) ? (
-                        <h1>No restaurant matching filter</h1>
+                        <Shimmer />
+                        
                     ) : (
                         listOfRest.map((rest) => (
                             // Add null/undefined check for data and id before rendering
