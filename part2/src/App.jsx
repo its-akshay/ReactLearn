@@ -5,6 +5,7 @@ import Weather from './Components/Weather'
 import Error from './Components/Error';
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import Contact from './Components/Contact';
+import RestaurantMenu from './Components/RestaurantMenu';
 
 const App = () => {
   return (
@@ -12,7 +13,7 @@ const App = () => {
 
       <Header />
       <Outlet />
-      <Body />   
+      <Body />
     </>
   );
 };
@@ -32,12 +33,18 @@ const appRouter = createBrowserRouter([
         path: "/contact",
         element: <Contact />,
       },
+      
     ],
+  },
+  {
+    path: "restaurant/:id",
+    element: <RestaurantMenu />
   },
   {
     path: "/weather",
     element: <Weather />
-  }
+  },
+
 ]);
 
 // Export RouterProvider for rendering in main.jsx
