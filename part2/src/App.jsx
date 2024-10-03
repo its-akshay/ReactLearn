@@ -2,15 +2,17 @@ import About from './Components/About';
 import { Body } from './Components/Body';
 import Header from './Components/Header';
 import Weather from './Components/Weather'
-
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Error from './Components/Error';
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import Contact from './Components/Contact';
 
 const App = () => {
   return (
     <>
 
       <Header />
-      <Body />
+      <Outlet />
+      <Body />   
     </>
   );
 };
@@ -20,10 +22,17 @@ const appRouter = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-  },
-  {
-    path: "/about",
-    element: <About />,
+    errorElement: <Error />,
+    children: [
+      {
+        path: "/about",
+        element: <About />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
+      },
+    ],
   },
   {
     path: "/weather",

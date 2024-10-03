@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import './Header.css'
+import { Link } from 'react-router-dom';
+
+
 const Header = () => {
   const [isLogged, setIsLogged] = useState(false);
   return (
@@ -9,9 +12,18 @@ const Header = () => {
       </div>
       <div className="nav-items">
         <ul>
-          <li>Home</li>
-          <li>About</li>
-          <li>Contact</li>
+          <Link to="/">
+            <li>Home</li>
+          </Link>
+
+          <Link to="/about">
+            <li>About</li>
+          </Link>
+
+          <Link to="/contact">
+            <li>Contact</li>
+          </Link>
+ 
           <li>Cart</li>
           <li>Weather</li>
         </ul>
@@ -21,7 +33,7 @@ const Header = () => {
             (<button onClick={() => { setIsLogged(true) }}>Login</button>) :
             (<button onClick={() => { setIsLogged(false) }}>Logout</button>)
         }
-        
+
       </div>
     </div>
   )

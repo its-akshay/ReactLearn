@@ -101,13 +101,13 @@ export const Body = () => {
                 {
                     (!listOfRest || listOfRest.length === 0) ? (
                         <Shimmer />
-                        
+
                     ) : (
                         listOfRest.map((rest) => (
                             // Add null/undefined check for data and id before rendering
-                            
+
                             rest.info && rest.info.id ? (
-                                
+
                                 <RestaurantCard key={rest.info.id} resData={rest} />
                             ) : (
                                 console.error("Missing", rest)
