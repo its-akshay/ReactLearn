@@ -25,25 +25,13 @@ const RestaurantMenu = () => {
             <img src={CDN_URL + res?.cards?.[3].card.card.info.cloudinaryImageId} />
             <h1>{res?.cards?.[3].card.card.info.id} </h1>
             <h1>{res?.cards?.[3].card.card.info.areaName} </h1>
-            {/* <ul>
-                {Object.values(res?.cards?.[7]?.card?.card?.brands)?.map((item) => (
-                    <li key={item.text}>{item.text}</li>
-                ))}
-            </ul> */}
+
+
             <ul>
-                {res &&
-                    res.cards &&
-                    res.cards[7] &&
-                    res.cards[7].card &&
-                    res.cards[7].card.card &&
-                    res.cards[7].card.card.brands &&
-                    Object.values(res.cards[7].card.card.brands).map((item) => (
-                        <li key={item.text}>{item.text}</li>
-                    ))}
+                {res?.cards?.[3].card.card.info.cuisines.map((item, id) => (
+                   <li key={id}>{item}</li>
+                ))}
             </ul>
-
-
-
         </>
     );
 };
