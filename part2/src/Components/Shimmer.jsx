@@ -1,6 +1,6 @@
 // whenever we loads the data we see
 
-import './Shimmer.css'
+import './Index.css'
 
 const Shimmer = () => {
   return (

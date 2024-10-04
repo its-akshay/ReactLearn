@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import "./Weather.css"
+import './Index.css'
 import { WEATHER } from "../Utils/constants"
 //unable to find any weather api so used the github api
 const Weather = () => {

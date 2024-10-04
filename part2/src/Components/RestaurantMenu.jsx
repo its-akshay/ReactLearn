@@ -18,21 +18,19 @@ const RestaurantMenu = () => {
     }
 
     return (
-        <>
+        <div className="menu">
             <h1>Restaurant id : {id}</h1>
 
             <h2>{res?.cards?.[0].card.card.description}</h2>
-            <img src={CDN_URL + res?.cards?.[3].card.card.info.cloudinaryImageId} />
-            <h1>{res?.cards?.[3].card.card.info.id} </h1>
-            <h1>{res?.cards?.[3].card.card.info.areaName} </h1>
-
-
+            <img className="menu-image" src={CDN_URL + res?.cards?.[3].card.card.info.cloudinaryImageId} />
+            <h3>{res?.cards?.[3].card.card.info.id} </h3>
+            <h3>{res?.cards?.[3].card.card.info.areaName} </h3>
             <ul>
                 {res?.cards?.[3].card.card.info.cuisines.map((item, id) => (
                    <li key={id}>{item}</li>
                 ))}
             </ul>
-        </>
+        </div>
     );
 };
 
