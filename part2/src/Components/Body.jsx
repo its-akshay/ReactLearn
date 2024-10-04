@@ -68,7 +68,7 @@ export const Body = () => {
                 className="res-filter"
                 onClick={() => {
                     if (Array.isArray(allRestaurants)) {
-                        const filteredList = allRestaurants.filter((rest) => rest.info.avgRating < 4);
+                        const filteredList = allRestaurants.filter((rest) => rest.info.avgRating < 4.3);
                         setListOfRest(filteredList);
                     } else {
                         console.error("allRestaurants is not an array");
