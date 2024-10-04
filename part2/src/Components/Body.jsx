@@ -1,7 +1,7 @@
 import RestaurantCard from './RestaurantCard'
 import { useEffect, useState } from 'react'
 import { SWIGGY } from '../Utils/constants';
-// import Shimmer from './Shimmer';
+import Shimmer from './Shimmer';
 
 function filterData(searchInput, listOfRest) {
     if (!listOfRest || !Array.isArray(listOfRest)) {
@@ -17,6 +17,7 @@ export const Body = () => {
     const [listOfRest, setListOfRest] = useState([]);
     const [allRestaurants, setAllRestaurants] = useState([]);
     const [searchInput, setSearchInput] = useState("");
+    const [loading, setLoading] = useState(true); // Loading state
 
     useEffect(() => {
         getRestaurants();
@@ -43,6 +44,8 @@ export const Body = () => {
             }
         } catch (error) {
             console.error("Error fetching data:", error);
+        } finally {
+            setLoading(false); // Set loading to false after fetching
         }
     }
 
@@ -56,7 +59,6 @@ export const Body = () => {
             handleSearch();
         }
     };
-    
 
     return (
         <div className="body">
@@ -109,24 +111,22 @@ export const Body = () => {
             </div>
 
             <div className="res-container">
-                {
-                    (!listOfRest || listOfRest.length === 0) ? (
-                        // <Shimmer />
+                {loading ? ( // Show shimmer while loading
+                    <Shimmer />
+                ) : (
+                    listOfRest.length === 0 ? ( // Check if no restaurants found after search
                         <h1>Not Found</h1>
-
                     ) : (
                         listOfRest.map((rest) => (
                             // Add null/undefined check for data and id before rendering
-
                             rest.info && rest.info.id ? (
-
                                 <RestaurantCard key={rest.info.id} resData={rest} />
                             ) : (
                                 console.error("Missing", rest)
                             )
                         ))
                     )
-                }
+                )}
             </div>
         </div>
     );
