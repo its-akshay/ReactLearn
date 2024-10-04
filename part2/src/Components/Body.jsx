@@ -1,7 +1,7 @@
 import RestaurantCard from './RestaurantCard'
 import { useEffect, useState } from 'react'
 import { SWIGGY } from '../Utils/constants';
-import Shimmer from './Shimmer';
+// import Shimmer from './Shimmer';
 
 function filterData(searchInput, listOfRest) {
     if (!listOfRest || !Array.isArray(listOfRest)) {
@@ -46,7 +46,17 @@ export const Body = () => {
         }
     }
 
-    console.log("Initial render");
+    const handleSearch = () => {
+        const data = filterData(searchInput, allRestaurants);
+        setListOfRest(data);
+    };
+
+    const handleKeyPress = (event) => {
+        if (event.key === 'Enter') {
+            handleSearch();
+        }
+    };
+    
 
     return (
         <div className="body">
@@ -85,6 +95,7 @@ export const Body = () => {
                     placeholder="search"
                     value={searchInput}
                     onChange={(e) => setSearchInput(e.target.value)}
+                    onKeyPress={handleKeyPress}
                 />
                 <button
                     className="search-btn"
@@ -100,7 +111,8 @@ export const Body = () => {
             <div className="res-container">
                 {
                     (!listOfRest || listOfRest.length === 0) ? (
-                        <Shimmer />
+                        // <Shimmer />
+                        <h1>Not Found</h1>
 
                     ) : (
                         listOfRest.map((rest) => (
