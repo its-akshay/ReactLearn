@@ -20,13 +20,35 @@ const RestaurantMenu = () => {
     return (
         <>
             <h1>Restaurant id : {id}</h1>
-            {/* Check if 'res' has a valid 'tid' property */}
-            {/* <h2>{res?.cards?.[0]?.card?.card?.text}</h2> */}
+
             <h2>{res?.cards?.[0].card.card.description}</h2>
-            <img src ={CDN_URL+ res?.cards?.[4].card.card.info.cloudinaryImageId} />
+            <img src={CDN_URL + res?.cards?.[3].card.card.info.cloudinaryImageId} />
+            <h1>{res?.cards?.[3].card.card.info.id} </h1>
+            <h1>{res?.cards?.[3].card.card.info.areaName} </h1>
+            {/* <ul>
+                {Object.values(res?.cards?.[7]?.card?.card?.brands)?.map((item) => (
+                    <li key={item.text}>{item.text}</li>
+                ))}
+            </ul> */}
+            <ul>
+                {res &&
+                    res.cards &&
+                    res.cards[7] &&
+                    res.cards[7].card &&
+                    res.cards[7].card.card &&
+                    res.cards[7].card.card.brands &&
+                    Object.values(res.cards[7].card.card.brands).map((item) => (
+                        <li key={item.text}>{item.text}</li>
+                    ))}
+            </ul>
+
+
 
         </>
     );
 };
 
 export default RestaurantMenu;
+
+
+// {res?.cards?.[3].card.card.brands.text}
