@@ -3,10 +3,10 @@ const Error = () => {
     const err = useRouteError();
     console.log(err);
     return (
-        <div>
-            <h1>Oops</h1>
-            <h2>Something went wrong</h2>
-            <h2>{err.status + ":" + err.statusText}</h2>
+        <div className="error-container">
+            <div className="error-title">Oops!</div>
+            <div className="error-message">Something went wrong</div>
+            <div className="error-subtitle">404: Not Found</div>
         </div>
     )
 };
