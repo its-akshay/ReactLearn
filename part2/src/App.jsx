@@ -58,3 +58,5 @@ const appRouter = createBrowserRouter([
 export default function MainRouter() {
   return <RouterProvider router={appRouter} />;
 }
+
+//Concept of Outlet is important
