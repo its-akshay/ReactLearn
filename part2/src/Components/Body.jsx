@@ -2,6 +2,7 @@ import RestaurantCard from './RestaurantCard'
 import { useEffect, useState } from 'react'
 import { SWIGGY } from '../Utils/constants';
 import Shimmer from './Shimmer';
+import useOnline from '../Utils/useOnline';
 
 function filterData(searchInput, listOfRest) {
     if (!listOfRest || !Array.isArray(listOfRest)) {
@@ -47,6 +48,12 @@ export const Body = () => {
         } finally {
             setLoading(false); // Set loading to false after fetching
         }
+    }
+    let isOnline = useOnline();
+    if (!isOnline) {
+        return (
+            <h1>Offline , check interntet</h1>
+        );
     }
 
     const handleSearch = () => {
