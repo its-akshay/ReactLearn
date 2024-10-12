@@ -11,7 +11,7 @@ import Profile from './Components/Profile';
 const App = () => {
   return (
     <>
-
+      
       <Header />
       <Outlet />
       <Body />
